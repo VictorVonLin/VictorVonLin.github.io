@@ -32,3 +32,9 @@ body {
 .parallax{
   z-index: 0 !important;
  }
+
+
+.vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
