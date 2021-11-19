@@ -15,6 +15,7 @@ function action(action, e) {
           xhr.status === 200) {
         var result = JSON.parse(e.target.response);
         $("main").html(result);
+        inits();
       }
     }
     xhr.send();
@@ -22,9 +23,13 @@ function action(action, e) {
 }
 
 
+function inits(){
+  $('.parallax').parallax();
+}
+
 $(document).ready(function(){
 	$('.modal').modal({});
-    
+  inits();
 });
 
 action('summary');

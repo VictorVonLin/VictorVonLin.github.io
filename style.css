@@ -6,6 +6,7 @@ body {
 
   main {
     flex: 1 0 auto;
+    background-color: #607d8b !important;
   }
 
   footer{
@@ -20,6 +21,14 @@ body {
   	object-fit: contain !important;
   }
 
+#hero-pic{
+  max-height: 8vh;
+}
+
 .btn {
   text-transform: unset !important;
 }
+
+.parallax{
+  z-index: 0 !important;
+ }
