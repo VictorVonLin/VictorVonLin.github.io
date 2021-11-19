@@ -14,9 +14,9 @@ body {
 
   #logo-pic{
   	padding-left: 3vw;
-  	padding-top: 1vh;
+  	padding-top: 0.5vh;
   	width: auto !important;
-  	max-height: 90% !important;
+  	max-height: 95% !important;
   	object-fit: contain !important;
   }
 
