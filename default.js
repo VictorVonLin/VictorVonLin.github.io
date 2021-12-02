@@ -28,6 +28,7 @@ function inits(){
 }
 
 $(document).ready(function(){
+  $('.slider').slider();
 	$('.modal').modal({});
   inits();
 });
