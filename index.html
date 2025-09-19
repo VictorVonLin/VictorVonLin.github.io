@@ -1,27 +1,154 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Welcome</title>
-		<link rel="shortcut icon" href="">
-		<!-- Compiled and minified CSS -->
-	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	</head>
-	
-	<main>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Victor Lin — Portfolio</title>
+  <meta name="description" content="Victor Lin — software engineer portfolio: projects, games, experiments, contact." />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root{
+      --bg:#0b0c10; --fg:#e8e8e8; --muted:#a8a8a8; --card:#111218; --border:#1f2230; --accent:#7dd3fc;
+      --maxw:1100px; --radius:18px;
+    }
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(0,0,0,.4);border-bottom:1px solid var(--border)}
+    nav{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .brand{font-weight:800}
+    .navlinks a{margin-left:16px;font-weight:600;cursor:pointer}
+    .container{max-width:var(--maxw);margin:0 auto;padding:32px 20px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+    .hero h1{font-size:clamp(28px,5vw,46px)}
+    .muted{color:var(--muted)}
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--card);font-weight:600;cursor:pointer}
+    .grid{display:grid;gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.grid.cols-3{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.grid.cols-3{grid-template-columns:1fr}}
+    .pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid var(--border);border-radius:999px}
+    .avatar{width:120px;height:120px;border-radius:50%;border:1px solid var(--border);object-fit:cover}
+    .repo h3{margin:0;font-size:18px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
+    footer{border-top:1px solid var(--border);margin-top:40px}
+    .tilt{transition:transform .15s ease}
+    .tilt:hover{transform:translateY(-2px)}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:100}
+    .modal{width:min(900px,92vw);max-height:85vh;overflow:auto}
+    .modal-toolbar{display:flex;gap:10px;align-items:center;justify-content:flex-end;margin:8px 0 12px 0}
+    .no-scroll{overflow:hidden;height:100vh}
+    .modal-backdrop.open{display:flex}
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="brand"><a href="javascript:void(0)" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="text-decoration:none;color:inherit">Victor Lin.</a></div>
+    <div class="navlinks">
+      <a onclick="scrollToId('projectsSection')">Projects</a>
+      <a onclick="openResumeModal()">Experience</a>
+      <a onclick="scrollToId('contactSection')">Contact</a>
+    </div>
+  </nav>
+</header>
 
-		<h1>Hello World.</h1>
-		<h5>Work in progress...</h5>
+<main id="app" class="container">
+  <section class="hero">
+    <div class="card">
+      <span class="pill">👋 Hi, I’m Victor</span>
+      <h1>Building elegant, performant web apps with AI.</h1>
+      <p class="muted">UX enthusiast, Coffee Addict, and SVM (Shareholder Value Maximizer).</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" onclick="scrollToId('projectsSection')">See projects ↓</a>
+        <a class="btn" href="https://github.com/victorvonlin" target="_blank">GitHub</a>
+        <a class="btn" href="mailto:victorvonlin@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="card">
+      <img class="avatar" src="https://avatars.githubusercontent.com/u/50209221?v=4" alt="Victor Lin" />
+      <p class="muted">I'm a Software Engineer with experience in web based applications interested in creating beautiful and elegant interfaces to improve the user experience. This portfolio is a AI generated stand-in as I work on the actual personal website :)</p>
+    </div>
+  </section>
 
+  <section id="projectsSection" style="margin-top:28px">
+    <h2>Projects</h2>
+    <div class="grid cols-3">
+      <article class="card tilt">
+        <h3>Columns | Game</h3>
+        <p class="muted">A minimalist falling‑blocks game with a leaderboard and light/dark modes.</p>
+        <a class="btn" href="/Columns/" target="_blank">Open ↗</a>
+      </article>
+      <article class="card tilt">
+        <h3>Peerify | Chat</h3>
+        <p class="muted">A simple login & account flow for a chat experience with serverless/P2P flavor.</p>
+        <a class="btn" href="/chat/" target="_blank">Open ↗</a>
+      </article>
+      <article class="card tilt">
+        <h3>Way of the Ninja | Website</h3>
+        <p class="muted">Landing page with summary, gameplay sections, and Windows download.</p>
+        <a class="btn" href="/WayOfTheNinja/" target="_blank">Open ↗</a>
+      </article>
+    </div>
+  </section>
 
-		<div>
-			<ul>
-  				<li><a href="https://victorvonlin.github.io/Columns/">Columns</a></li>
-  				<li><a href="https://victorvonlin.github.io/chat/">Chat</a></li>
-  				<li><a href="https://victorvonlin.github.io/WayOfTheNinja/">Game</a></li>
-			</ul>  
-		</div>
-	</main>
+  <section id="contactSection" style="margin-top:40px">
+    <h2>Contact</h2>
+    <div class="card">
+      <div class="tags">
+        <a class="tag" href="mailto:victorvonlin@gmail.com">Email</a>
+        <a class="tag" href="https://www.linkedin.com/in/victorvonlin/" target="_blank">LinkedIn</a>
+        <a class="tag" href="https://github.com/victorvonlin" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-	
-	
+<footer class="container">
+  <p class="muted">© <span id="year"></span> Victor Lin • Single‑page app</p>
+</footer>
+
+<div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="card modal">
+    <div style="display:flex;justify-content:space-between;align-items:center"><h3 id="modalTitle">Modal</h3><button class="btn" onclick="closeModal()" aria-label="Close">Close</button></div>
+    <div id="modalBody" class="muted"></div>
+  </div>
+</div>
+
+<script>
+// --- Minimal helpers
+function scrollToId(id){ var t=document.getElementById(id); if(t) t.scrollIntoView({behavior:'smooth'}); }
+
+// --- Modal logic (resume preview)
+var RESUME_URL = 'resume.pdf'; // put your PDF at repo root or change to a direct PDF URL
+var backdrop = document.getElementById('modalBackdrop');
+backdrop.addEventListener('click', function(e){ if(e.target===backdrop) closeModal(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
+function openResumeModal(){
+  document.getElementById('modalTitle').textContent='Resume';
+  var tools = '<div class="modal-toolbar">'+
+              '<a class="btn" href="'+RESUME_URL+'" target="_blank" rel="noopener">Open in new tab ↗</a>'+
+              '<a class="btn" href="'+RESUME_URL+'" download>Download</a>'+
+              '</div>';
+  var html = tools+
+    '<object data="'+RESUME_URL+'" type="application/pdf" style="width:100%;height:70vh;">'+
+      '<div style="padding:12px">'+
+        '<p>Preview unavailable here. You can <a href="'+RESUME_URL+'" target="_blank" rel="noopener">open the resume PDF in a new tab</a> or <a href="'+RESUME_URL+'" download>download it</a>.</p>'+
+      '</div>'+
+    '</object>'+
+    '<p class="muted" style="margin-top:8px">Tip: add a <code>resume.pdf</code> to your repo root or update <code>RESUME_URL</code> above to a direct PDF link.</p>';
+  document.getElementById('modalBody').innerHTML = html;
+  backdrop.classList.add('open');
+  document.body.classList.add('no-scroll');
+}
+function closeModal(){ backdrop.classList.remove('open'); document.body.classList.remove('no-scroll'); }
+
+// --- Footer year
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
 </html>
